@@ -19,7 +19,6 @@ public class ImprovedTicTacToe {
 
     static char[][] map = new char[SIZE][SIZE];
     static char[] win = new char[CHIPS];
-    static char[] check = new char[SIZE];
 
     static Scanner scanner = new Scanner(System.in);
     static Random random = new Random();
@@ -125,13 +124,12 @@ public class ImprovedTicTacToe {
 
         boolean isEnd = false;
 
-        if(checkWin(symbol)) {
+        if (checkWin(symbol)) {
             String winMessage;
 
-            if(symbol == DOT_HUMAN) {
+            if (symbol == DOT_HUMAN) {
                 winMessage = "УРА! Вы победили!";
-            }
-            else {
+            } else {
                 winMessage = "Восстание близко! AI победил";
             }
 
@@ -139,43 +137,46 @@ public class ImprovedTicTacToe {
             System.out.println(winMessage);
         }
 
-        if(!isEnd && isMapFull()) {
+        if (!isEnd && isMapFull()) {
             System.out.println("Ничья!");
             isEnd = true;
         }
 
-        if(isEnd) {
+        if (isEnd) {
             System.exit(0);
         }
     }
 
     private static boolean checkWin(char symbol) {
-        Arrays.fill(win,symbol);
+        char[] row = new char[SIZE];
+
         for (int i = 0; i < SIZE; i++) {
-            System.arraycopy(map[i], 0, check, 0, SIZE);
-            if(Arrays.equals(check,win)) return true;
+            for (int j = 0; j < SIZE; j++) {
+                row[j] = map[i][j];
+            }
+            if (checkRow(row,symbol)) return true;
         }
         for (int j = 0; j < SIZE; j++) {
             for (int i = 0; i < SIZE; i++) {
-                check[i] = map[i][j];
+                row[i] = map[i][j];
             }
-            if(Arrays.equals(check,win)) return true;
+            if (checkRow(row,symbol)) return true;
         }
         for (int i = 0, j = 0; i < SIZE; i++, j++) {
-            check[i] = map[i][j];
+            row[i] = map[i][j];
         }
-        if(Arrays.equals(check,win)) return true;
+        if (checkRow(row,symbol)) return true;
         for (int i = 0, j = SIZE - 1; i < SIZE; i++, j--) {
-            check[i] = map[i][j];
+            row[i] = map[i][j];
         }
-        if(Arrays.equals(check,win)) return true;
+        if (checkRow(row,symbol)) return true;
         return false;
     }
 
     private static boolean isMapFull() {
         for (char[] chars : map) {
             for (char aChar : chars) {
-                if(aChar == DOT_EMPTY) {
+                if (aChar == DOT_EMPTY) {
                     return false;
                 }
             }
@@ -196,12 +197,16 @@ public class ImprovedTicTacToe {
         map[rowNumber - 1][colNumber - 1] = DOT_AI;
     }
 
-    private static boolean checkRow (char[] row) {
+    private static boolean checkRow(char[] row, char symbol) {
+        boolean res = false;
         char[] buf = new char[CHIPS];
-        for (int i = 0; i < buf.length; i++) {
-            buf[i] = row[i];
+        Arrays.fill(win, symbol);
+        for (int k = 0; k <= SIZE - CHIPS; k++) {
+            for (int i = 0; i < buf.length; i++) {
+                buf[i] = row[i + k];
+            }
+            if (Arrays.equals(buf, win)) res =  true;
         }
-
-        return false;
+        return res;
     }
 }
