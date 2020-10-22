@@ -1,8 +1,8 @@
 package lesson5;
 
 public class Employee {
-    String fullName, position, email, phoneNumber;
-    int salary, age;
+    private String fullName, position, email, phoneNumber;
+    private int salary, age;
 
     public Employee(String fullName, String position, String email, String phoneNumber, int salary, int age) {
         this.fullName = fullName;
@@ -15,10 +15,10 @@ public class Employee {
 
     public void showInfo() {
         System.out.println("ФИО - " + fullName + "; Должность - " + position + "; email  - " + email +
-                        "; телефон - " + phoneNumber + "; ЗП - " + salary + "; Возраст - " + age);
+                "; телефон - " + phoneNumber + "; ЗП - " + salary + "; Возраст - " + age);
     }
 
-    public int getAge () {
+    public int getAge() {
         return age;
     }
 }

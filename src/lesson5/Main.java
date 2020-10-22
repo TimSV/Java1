@@ -1,7 +1,7 @@
 package lesson5;
 
 public class Main {
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         Employee[] empArray = new Employee[5];
         empArray[0] = new Employee("Иван",
                 "Директор",
@@ -28,7 +28,7 @@ public class Main {
                 "891111595687",
                 35000,
                 23);
-        empArray[3] = new Employee("Лилия",
+        empArray[4] = new Employee("Лилия",
                 "Менеджер",
                 "ll@example.com",
                 "891113574523",
@@ -36,16 +36,16 @@ public class Main {
                 25);
 
 
-        for (int i = 0; i < empArray.length - 1; i++) {
-            empArray[i].showInfo();
+
+        for (Employee emp : empArray) {
+            emp.showInfo();
         }
 
         System.out.println("Сотрудники 40+ :");
-        for (int i = 0; i < empArray.length - 1; i++) {
-            if (empArray[i].getAge() > 40)
-                empArray[i].showInfo();
+        for (Employee emp : empArray) {
+            if (emp.getAge() > 40)
+                emp.showInfo();
         }
-
 
     }
 }
