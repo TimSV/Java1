@@ -5,7 +5,7 @@ public class Dog extends Animal {
         this.name = name;
         limitRun = 450 + (int) (Math.random() * 100);
         limitJump = 0.5;
-        limitSwim = 8 + (int) (Math.random() * 5);;
+        limitSwim = 8 + (int) (Math.random() * 5);
         System.out.println(toString());
     }
 

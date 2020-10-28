@@ -1,10 +1,10 @@
 package lesson6;
 
 public class Animal {
-    protected int limitRun;
-    protected int limitSwim;
-    protected double limitJump;
-    protected String name;
+    int limitRun;
+    int limitSwim;
+    double limitJump;
+    String name;
 
     public void run(int length) {
         System.out.println("Смотри как бежит зверушка!");
