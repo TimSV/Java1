@@ -1,10 +1,10 @@
 package lesson6;
 
 public class Dog extends Animal {
-    public  Dog(String name) {
+    public Dog(String name) {
         this.name = name;
         limitRun = 450 + (int) (Math.random() * 100);
-        limitJump = 0.5;
+        limitJump = 0.5f;
         limitSwim = 8 + (int) (Math.random() * 5);
         System.out.println(toString());
     }
@@ -26,20 +26,20 @@ public class Dog extends Animal {
     }
 
     @Override
+    public void jump(float length) {
+        if (length <= limitJump) {
+            System.out.println("Собачка перепрыгнула " + length + " метров");
+        } else {
+            System.out.println("Собачка не сможет перепрыгнуть " + length + " метров");
+        }
+    }
+
+    @Override
     public void swim(int length) {
         if (length <= limitSwim) {
             System.out.println("Собачка проплыла " + length + " метров");
         } else {
             System.out.println("Собачка не сможет проплыть " + length + " метров");
-        }
-    }
-
-    @Override
-    public void jump(int length) {
-        if (length <= limitJump) {
-            System.out.println("Собачка перепрыгнула " + length + " метров");
-        } else {
-            System.out.println("Собачка не сможет перепрыгнуть " + length + " метров");
         }
     }
 }
